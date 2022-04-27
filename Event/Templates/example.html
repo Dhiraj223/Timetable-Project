@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+  <title>404-Not Found</title>
+</head>
+
+<body style="background-color: lemonchiffon;">
+  <nav  class="navbar navbar-expand-lg navbar-light " style="background-color:lemonchiffon;">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">TimeTable</a>
+      <button class="navbar-toggler" style="background-color: lightblue;" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/reminder">Create your Reminders</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/timetable">Create your Timetable</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/contact">Contact Us</a>
+          </li>
+          <li>
+            {% if user.is_authenticated %}
+            <ul class="navbar-nav mr-7">
+              <li class="nav-item dropdown mr-3">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                  aria-expanded="false">
+                  {{request.user}}
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <li><a class="dropdown-item" href="reminders"> Check Your Reminders</a></li>
+                  <li><a class="dropdown-item" href="timetables"> Check Your Timetable</a></li>
+                  <li><a class="dropdown-item" href="logout">Logout</a></li>
+                </ul>
+              </li>
+          </li>
+        </ul>
+        <li>
+        {% else %}
+        <li class="nav-item">
+          <a  type="button" class="nav-link active" data-bs-toggle="modal" data-bs-target="#Signup" aria-current="page">Signin</a>
+        </li>
+        <li class="nav-item">
+          <a  type="button" class="nav-link active" data-bs-toggle="modal" aria-current="page" data-bs-target="#Login">Login</a>
+        </li>
+        {% endif %}
+      </li>
+      </div>
+    </div>
+  </nav>
+
+  {% for message in messages %}
+  <div class="alert alert-{{ message.tags}} alert-dismissible fade show" role="alert">
+    <strong>Message:</strong>{{ message }}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+  {% endfor %}
+
+  <!--  Signin Modal -->
+  <div class="modal fade" id="Signup" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">Signin</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form action="signin" method="POST">
+            <div class="form-floating mb-3">
+              <input type="text" class="form-control" id="fname" name="fname" placeholder="Name" required>
+              <label for="floatingInput">First Name</label>
+            </div>
+            <div class="form-floating mb-3">
+              <input type="text" class="form-control" id="lname" name="lname" placeholder="Name" required>
+              <label for="floatingInput">Last Name</label>
+            </div>
+            <div class="form-floating mb-3">
+              <input type="text" class="form-control" id="username" name="username" placeholder="Username" required>
+              <label for="floatingInput">Username</label>
+            </div>
+            <div class="form-floating mb-3">
+              <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com required">
+              <label for="floatingInput">Email address</label>
+            </div>
+            <div class="form-floating mb-3">
+              <input type="password" class="form-control" id="password1" name="password1" placeholder="Password"
+                required>
+              <label for="floatingPassword">Password</label>
+            </div>
+            <div class="form-floating mb-3">
+              <input type="password" class="form-control" id="password2" name="password2" placeholder="Password"
+                required>
+              <label for="floatingPassword">Confirm Password</label>
+            </div>
+            {% csrf_token %}
+            <button type="submit" class="btn btn-outline-primary">Signup</button>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--  Login Modal -->
+  <div class="modal fade" id="Login" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">Login</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form action="login" method="POST">
+            <div class="form-floating mb-3">
+              <input type="text" class="form-control" id="loginusername" name="loginusername" placeholder="Username"
+                required>
+              <label for="floatingInput">Username</label>
+            </div>
+            <div class="form-floating mb-3">
+              <input type="password" class="form-control" id="loginpassword" name="loginpassword" placeholder="Password"
+                required>
+              <label for="floatingPassword">Password</label>
+            </div>
+            {% csrf_token %}
+            <button type="submit" class="btn btn-outline-primary">Login</button>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+
+    <div class="container my-4">
+        <h3 style="text-align: center;">OOPS!!</h3>
+        <h5>Please see the below Suggestions to excess this page:</h5>
+        <ul>
+            <li>You don't have any timetable to show!!!</li>
+            <li><a href="timetable"> <b>Create your timetable</b> </a>to excess this page !!!</li>
+            <li>Or Contact us ,if you are having any trouble.</li>
+        </ul>
+    </div>
+</body>
+
+</html>

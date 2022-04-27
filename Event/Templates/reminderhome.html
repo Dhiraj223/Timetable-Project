@@ -1,0 +1,480 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+  <title>Reminders</title>
+</head>
+
+<body style="background-color: lemonchiffon;">
+  <nav  class="navbar navbar-expand-lg navbar-light " style="background-color:lemonchiffon;">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">TimeTable</a>
+      <button class="navbar-toggler" style="background-color: lightblue;" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/reminder">Create your Reminders</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/timetable">Create your Timetable</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/contact">Contact Us</a>
+          </li>
+          <li>
+            {% if user.is_authenticated %}
+            <ul class="navbar-nav mr-7">
+              <li class="nav-item dropdown mr-3">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                  aria-expanded="false">
+                  {{request.user}}
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <li><a class="dropdown-item" href="reminders"> Check Your Reminders</a></li>
+                  <li><a  class="dropdown-item" href="timetables">Check Your Timetable</a></li>
+                  <li><a class="dropdown-item" href="logout">Logout</a></li>
+                </ul>
+              </li>
+          </li>
+        </ul>
+        <li>
+        {% else %}
+        <li class="nav-item">
+          <a  type="button" class="nav-link active" data-bs-toggle="modal" data-bs-target="#Signup" aria-current="page">Signin</a>
+        </li>
+        <li class="nav-item">
+          <a  type="button" class="nav-link active" data-bs-toggle="modal" aria-current="page" data-bs-target="#Login">Login</a>
+        </li>
+        {% endif %}
+      </li>
+      </div>
+    </div>
+  </nav>
+
+  {% for message in messages %}
+  <div class="alert alert-{{ message.tags}} alert-dismissible fade show" role="alert">
+    <strong>Message:</strong>{{ message }}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+  {% endfor %}
+
+  <!--  Signin Modal -->
+  <div class="modal fade" id="Signup" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">Signin</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form action="signin" method="POST">
+            <div class="form-floating mb-3">
+              <input type="text" class="form-control" id="fname" name="fname" placeholder="Name" required>
+              <label for="floatingInput">First Name</label>
+            </div>
+            <div class="form-floating mb-3">
+              <input type="text" class="form-control" id="lname" name="lname" placeholder="Name" required>
+              <label for="floatingInput">Last Name</label>
+            </div>
+            <div class="form-floating mb-3">
+              <input type="text" class="form-control" id="username" name="username" placeholder="Username" required>
+              <label for="floatingInput">Username</label>
+            </div>
+            <div class="form-floating mb-3">
+              <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com required">
+              <label for="floatingInput">Email address</label>
+            </div>
+            <div class="form-floating mb-3">
+              <input type="password" class="form-control" id="password1" name="password1" placeholder="Password"
+                required>
+              <label for="floatingPassword">Password</label>
+            </div>
+            <div class="form-floating mb-3">
+              <input type="password" class="form-control" id="password2" name="password2" placeholder="Password"
+                required>
+              <label for="floatingPassword">Confirm Password</label>
+            </div>
+            {% csrf_token %}
+            <button type="submit" class="btn btn-outline-primary">Signup</button>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--  Login Modal -->
+  <div class="modal fade" id="Login" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">Login</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form action="login" method="POST">
+            <div class="form-floating mb-3">
+              <input type="text" class="form-control" id="loginusername" name="loginusername" placeholder="Username"
+                required>
+              <label for="floatingInput">Username</label>
+            </div>
+            <div class="form-floating mb-3">
+              <input type="password" class="form-control" id="loginpassword" name="loginpassword" placeholder="Password"
+                required>
+              <label for="floatingPassword">Password</label>
+            </div>
+            {% csrf_token %}
+            <button type="submit" class="btn btn-outline-primary">Login</button>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+    {% if user.is_authenticated %}
+    <div class="container my-4" style="background-color: navajowhite;">
+        <div class="row">
+          <div  class="card w-100 my-3 mx-auto" style="background-color:mediumaquamarine;">
+            <div class="card-body">
+              <h5 class="card-title">Regular Reminders </h5>
+              <p class="card-text">
+                {% if regular|length >= 1 %}
+                <ol>
+                {% for event in regular %}
+                     <li class="my-2" style="font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;"> <b>{{event.event}} </b> - on {{event.date}} at {{event.time}}</li>
+                 {% endfor %}
+                </ol>
+                {% else %}
+                <ul>
+                    <li>You dont have any Regular Reminder.</li>
+                    
+                    <li>You can add Regular Reminders like:</li>
+                    <ul>
+                        <li>Organize Wardrobe</li>
+                        <li>Pick XYZ from XYZ place</li>
+                        <li>Listen to special podcast</li>
+                    </ul>
+                    <li>You can add anything you wish.</li>
+                    
+                </ul>
+            
+              </p>
+              <a href="/reminder" class="btn btn-outline-primary ">Create Reminders</a>
+              {% endif %}
+            </div>
+          </div>
+          <div  class="card w-100 my-3 mx-auto" style="background-color: mediumaquamarine;" >
+            <div class="card-body">
+              <h5 class="card-title">Important Reminders</h5>
+              <p class="card-text">
+                {% if important|length >= 1 %}
+                <ol>
+                {% for event in important %}
+                     <li class="my-2"><b>{{event.event}} </b> - on {{event.date}} at {{event.time}}</li>
+                 {% endfor %}
+                </ol>
+                {% else %}
+                <ul>
+                    <li>You dont have any important reminder.</li>
+                    
+                    <li>You can add important reminders like:</li>
+                    <ul>
+                        <li>Pick Money from XYZ</li>
+                        <li>Complete Bank Work</li>
+                        <li>Transfer Money to XYZ friend</li>
+                    </ul>
+                    <li>You can add anything you wish.</li>
+                    
+                </ul>
+            
+              </p>
+              <a href="/reminder" class="btn btn-outline-primary ">Create Reminders</a>
+              {% endif %}
+            </div>
+          </div>
+          <div  class="card w-100 my-3 mx-auto" style="background-color: mediumaquamarine;">
+            <div class="card-body">
+              <h5 class="card-title">Special Event Reminders</h5>
+              <p class="card-text">
+                {% if special|length >= 1 %}
+                <ol>
+                {% for event in special %}
+                     <li class="my-2"><b>{{event.event}} </b> - on {{event.date}} at {{event.time}}</li>
+                 {% endfor %}
+                </ol>
+                {% else %}
+                <ul>
+                    <li>You dont have any Special Event reminder.</li>
+                    
+                    <li>You can add Special Event reminders like:</li>
+                    <ul>
+                        <li>Happy Birthday of a friend</li>
+                        <li>Anniversary</li>
+                        <li>Fuction/Party</li>
+                    </ul>
+                    <li>You can add anything you wish.</li>
+                    
+                </ul>
+            
+              </p>
+              <a href="/reminder" class="btn btn-outline-primary ">Create Reminders</a>
+              {% endif %} 
+            </div>
+          </div>
+    
+      </div>
+    </div>
+    {% else %}
+    <div class="container my-4">
+        <h3 style="text-align: center;">OOPS!!</h3>
+        <h5>Please see the below Suggestions to excess this page:</h5>
+        <ul>
+            <li>Your are not logged in,loggin to set your Timetable and Reminders.</li>
+            <li>If you dont have a account yet ,please make sure to have one to use our services.</li>
+            <li>Or Contact Us ,if you are having any trouble.</li>
+        </ul>
+    </div>
+    
+    {% endif %}
+    <footer class="site-footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12 col-md-6">
+            <h6>About</h6>
+            <p class="text-justify">This is a Personal Timetable Manager and Event Reminder site which will help remind
+              you your special events and creating your timetable.The structure of this website is very simple, and user
+              friendly.In case you find any difficulty or something which causes some issue you can Contact us and we will
+              help you solve your Issue. <br> Team Alpha </p>
+          </div>
+  
+          <div class="col-xs-6 col-md-3">
+            <h6>Quick Links</h6>
+            <ul class="footer-links">
+              <li><a href="/">Home</a></li>
+              <li><a href="contact">Contact Us</a></li>
+              <li><a href="reminder">Create your Reminder</a></li>
+              <li><a href="timetable">Timetable</a></li>
+              <li><a href="reminders">Check your Reminders </a></li>
+            </ul>
+          </div>
+        </div>
+        <hr>
+      </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8 col-sm-6 col-xs-12">
+            <p class="copyright-text">Copyright &copy; 2021 All Rights Reserved by
+              Team Alpha.
+            </p>
+          </div>
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+          <div class="col-md-4 col-sm-6 col-xs-12">
+            <ul class="social-icons">
+              <li><a href=""><i class="fab fa-facebook-f"></i></a></li>
+              <li><a href=""><i class="fab fa-instagram"></i></a></li>
+              <li><a href=""><i class="fab fa-twitter"></i></a></li>
+              <li> <a href=""><i class="fab fa-github"></i></a></li>
+              <li><a href=""><i class="fab fa-linkedin-in"></i></a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </footer>
+  
+    <style>
+      .site-footer {
+        background-color: #26272b;
+        padding: 45px 0 20px;
+        font-size: 15px;
+        line-height: 24px;
+        color: #737373;
+      }
+  
+      .site-footer hr {
+        border-top-color: #bbb;
+        opacity: 0.5
+      }
+  
+      .site-footer hr.small {
+        margin: 20px 0
+      }
+  
+      .site-footer h6 {
+        color: #fff;
+        font-size: 16px;
+        text-transform: uppercase;
+        margin-top: 5px;
+        letter-spacing: 2px
+      }
+  
+      .site-footer a {
+        color: #737373;
+      }
+  
+      .site-footer a:hover {
+        color: #3366cc;
+        text-decoration: none;
+      }
+  
+      .footer-links {
+        padding-left: 0;
+        list-style: none
+      }
+  
+      .footer-links li {
+        display: block
+      }
+  
+      .footer-links a {
+        color: #737373
+      }
+  
+      .footer-links a:active,
+      .footer-links a:focus,
+      .footer-links a:hover {
+        color: #3366cc;
+        text-decoration: none;
+      }
+  
+      .footer-links.inline li {
+        display: inline-block
+      }
+  
+      .site-footer .social-icons {
+        text-align: right
+      }
+  
+      .site-footer .social-icons a {
+        width: 40px;
+        height: 40px;
+        line-height: 40px;
+        margin-left: 6px;
+        margin-right: 0;
+        border-radius: 100%;
+        background-color: #33353d
+      }
+  
+      .copyright-text {
+        margin: 0
+      }
+  
+      @media (max-width:991px) {
+        .site-footer [class^=col-] {
+          margin-bottom: 30px
+        }
+      }
+  
+      @media (max-width:767px) {
+        .site-footer {
+          padding-bottom: 0
+        }
+  
+        .site-footer .copyright-text,
+        .site-footer .social-icons {
+          text-align: center
+        }
+      }
+  
+      .social-icons {
+        padding-left: 0;
+        margin-bottom: 0;
+        list-style: none
+      }
+  
+      .social-icons li {
+        display: inline-block;
+        margin-bottom: 4px
+      }
+  
+      .social-icons li.title {
+        margin-right: 15px;
+        text-transform: uppercase;
+        color: #96a2b2;
+        font-weight: 700;
+        font-size: 13px
+      }
+  
+      .social-icons a {
+        background-color: #eceeef;
+        color: #818a91;
+        font-size: 16px;
+        display: inline-block;
+        line-height: 44px;
+        width: 44px;
+        height: 44px;
+        text-align: center;
+        margin-right: 8px;
+        border-radius: 100%;
+        -webkit-transition: all .2s linear;
+        -o-transition: all .2s linear;
+        transition: all .2s linear
+      }
+  
+      .social-icons a:active,
+      .social-icons a:focus,
+      .social-icons a:hover {
+        color: #fff;
+        background-color: #29aafe
+      }
+  
+      .social-icons.size-sm a {
+        line-height: 34px;
+        height: 34px;
+        width: 34px;
+        font-size: 14px
+      }
+  
+      .social-icons a.facebook:hover {
+        background-color: #3b5998
+      }
+  
+      .social-icons a.twitter:hover {
+        background-color: #00aced
+      }
+  
+      .social-icons a.linkedin:hover {
+        background-color: #007bb6
+      }
+  
+      .social-icons a.dribbble:hover {
+        background-color: #ea4c89
+      }
+  
+      @media (max-width:767px) {
+        .social-icons li.title {
+          display: block;
+          margin-right: 0;
+          font-weight: 600
+        }
+      }
+    </style>
+
+</body>
+
+</html>

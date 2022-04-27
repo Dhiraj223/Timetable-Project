@@ -1,0 +1,35 @@
+{% extends "basic.html" %}
+
+{% block title %}ContactUs{% endblock %}
+
+{% block body %}
+<div class="container my-3" style="background-color: coral;">
+    <div class="card w-100 my-5 mx-auto" style="background-color: rgb(150, 233, 233);">
+        <h3 class="card-title my-2" style="text-align: center;font-family: 'Times New Roman', Times, serif;">Contact Us</h3>
+        <div class="card-body ">
+            <form action="contact" method="POST">
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="name" name="name" placeholder="Name" required>
+                    <label style="text-align: center;font-family: 'Times New Roman', Times, serif;" for="floatingInput"><h5>Name</h5></label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="email" class="form-control" id="email" name="email"
+                        placeholder="name@example.com required">
+                    <label style="text-align: center;font-family: 'Times New Roman', Times, serif;" for="floatingInput"><H5>Email Address </H5></label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="tel" class="form-control" id="tele" name="tele" placeholder="Phone Number" required>
+                    <label style="text-align: center;font-family: 'Times New Roman', Times, serif;" for="floatingPassword"><h5>Phone Number</h5></label>
+                </div>
+                <div class="form-floating mb-3">
+                    <textarea class="form-control" style="height: 150px;" placeholder="Leave a comment here"
+                        name="content" id="content"></textarea>
+                    <label style="text-align: center;font-family: 'Times New Roman', Times, serif;" for="floatingTextarea"><h5>Describe your Issues/Suggestions</h5></label>
+                </div>
+                {% csrf_token %}
+                <button type="submit" class="btn btn-outline-primary my-1">Submit Form</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

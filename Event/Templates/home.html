@@ -1,0 +1,129 @@
+{% extends "basic.html" %}
+
+{% block title %} Home{% endblock %}
+{% block style%}
+
+{% endblock %}
+{% block body %}
+
+
+  <div class="head my-3">
+    <h2 style="font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;text-align: center;">Welcome to
+      TimeTable</h2>
+  </div>
+
+  <div class="container my-3" style="background-color: navajowhite;">
+    {% if remind|length >= 1 %}
+    <div class="card w-100 my-2 mx-auto" style="background-color:rgb(150, 233, 233);">
+      <h3 class="card-title my-2" style="text-align: center;font-family: 'Times New Roman', Times, serif;">Your
+        Reminders
+      </h3>
+      <div class="card-body">
+        <ol>
+          {% for event in remind %}
+          <li
+            style="font-weight:300;font-size:larger;font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">
+            {{event.event}}- on {{event.date}} at {{event.time}}</li>
+
+          {% endfor %}
+        </ol>
+
+        <a href="reminders" class="mx-1">
+          <button class="btn btn-outline-primary">Check all Reminders</button>
+        </a>
+      </div>
+    </div>
+    {% else %}
+    <div class="card w-100 my-3 mx-auto" style="background-color:rgb(150, 233, 233);">
+      <h3 class="card-title my-2" style="text-align: center;font-family: 'Times New Roman', Times, serif;">Create
+        Reminders
+      </h3>
+      <div class="card-body">
+
+        <li style="font-weight: 500;font-size: large;">You can add Reminders like:</li>
+        <ol class="my-1">
+          <li class="my-1"
+            style="font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;font-size: larger;">Organize
+            Wardrobe</li>
+          <li class="my-1"
+            style="font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;font-size: larger;">Pick XYZ
+            from XYZ place</li>
+          <li class="my-1"
+            style="font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;font-size: larger;">Listen to
+            special podcast</li>
+          <li class="my-1"
+            style="font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;font-size: larger;">Pick Money
+            from XYZ</li>
+          <li class="my-1"
+            style="font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;font-size: larger;">Complete
+            Bank Work</li>
+          <li class="my-1"
+            style="font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;font-size: larger;">Transfer
+            Money to XYZ friend</li>
+          <li class="my-1"
+            style="font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;font-size: larger;">Happy
+            Birthday of a friend</li>
+          <li class="my-1"
+            style="font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;font-size: larger;">
+            Anniversary</li>
+          <li class="my-1"
+            style="font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;font-size: larger;">
+            Fuction/Party</li>
+        </ol>
+
+        <a href="reminder">
+          <button class="btn btn-outline-primary my-2">Create reminders</button></a>
+      </div>
+    </div>
+    {% endif %}
+    {% if timetable %}
+    <div class="card w-100 my-3 mx-auto" style="background-color:rgb(150, 233, 233);">
+      <h3 class="card-title my-2" style="text-align: center;font-family: 'Times New Roman', Times, serif;">Your
+        Timetable
+      </h3>
+      <div class="card-body">
+        <ol>
+          {% for time,topic in timetable %}
+          <li
+            style="font-weight: 500;font-size: larger;font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">
+            {{time}} - {{topic}}</li>
+          {% endfor %}
+        </ol>
+        <a href="timetables">
+          <button class="btn btn-outline-primary">Check all Timetable</button></a>
+      </div>
+    </div>
+    {% else %}
+    <div class="card w-100 my-3 mx-auto" style="background-color:rgb(150, 233, 233);">
+      <h3 class="card-title my-2" style="text-align: center;font-family: 'Times New Roman', Times, serif;">Create
+        Timetable
+      </h3>
+      <div class="card-body">
+        <li style="font-weight: 500;font-size: large;">You can add Timetable like:</li>
+        <ol>
+          <li style="font-size: larger;font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">9:00 -
+            Python Learning</li>
+          <li style="font-size: larger;font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">10:00 -
+            Html Course</li>
+          <li style="font-size: larger;font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">12:00 -
+            Cook Lunch</li>
+          <li style="font-size: larger;font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">14:00 -
+            Watch F.R.I.E.N.D.S</li>
+          <li style="font-size: larger;font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">18:00 -
+            Python Learning</li>
+          <li style="font-size: larger;font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">21:00 -
+            Cook Dinner</li>
+          <li style="font-size: larger;font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">22:00 -
+            Read Ai Magzine</li>
+        </ol>
+        <a href="timetable">
+          <button class="btn btn-outline-primary">Create Your Timetable</button></a>
+      </div>
+    </div>
+    {% endif %}
+
+</div>
+
+
+
+{% endblock %}
