@@ -181,10 +181,8 @@ def reminder(request):
         Events = Event(username=str(request.user),types=type,date=date,time=time,event=event)
         Events.save()
         messages.success(request," Your reminder is created..")
-        
-        val = User.objects.filter(username = request.user,id = 0000000)
-        print(len(val))
-        print(val)
+        print(request.user.id)
+        val = User.objects.filter(username = request.user,id = 0)
         if len(val) != 0 :
             messages.info(request," Make sure to send your username to our bot Martian on telegram to start reciving reminder messages on telegram.If you have recived the message of bot 'Your telegram id is recorded,you will recive messages of Your reminder here' you need not send again.\nThank You")
         send_notification(request,Events)

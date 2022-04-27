@@ -140,7 +140,7 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 EMAIL_HOST_USER = "jha.dhiraj22803@gmail.com"
-EMAIL_HOST_PASSWORD = "lyldrljvagjtfozk"
+EMAIL_HOST_PASSWORD = "vvkvsaohojbvtiod"
 
 CELERY_BROKER_URL = "redis://127.0.0.1:6379"
 CELERY_RESULT_BACKEND = "redis://127.0.0.1:6379"
