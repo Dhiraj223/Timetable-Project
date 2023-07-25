@@ -31,3 +31,11 @@ class Timetable(models.Model):
 
     def __str__(self):
         return "Remainder of - " + self.username
+    
+class TeleId(models.Model):
+    username = models.CharField(max_length=200)
+    teleid   = models.CharField(max_length=100, default="0000000")
+    num_mes  = models.CharField(max_length=200, default=1)
+
+    def __str__(self):
+        return "Users Telegram Ids - " + self.username

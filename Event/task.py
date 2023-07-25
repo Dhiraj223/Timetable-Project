@@ -1,31 +1,38 @@
-from django.core.mail import send_mail
-from celery import shared_task
 import time
-from Event import telegrambot
-from django.contrib.auth.models import User
-# celery -A Event worker -l info -P gevent
+import threading
+from Event.models import TeleId
+import telepot
+
+# Replace YOUR_BOT_TOKEN with your actual bot token
+bot = telepot.Bot('6678210094:AAGU81ktJ8Z3thrmf5Id6y3mTB2_P9UASVM')
 
 
-@shared_task
-def send_reminder_mail(num,reciver_email,reciver_name,reciver_event,reciver_id): 
-    id = telegrambot.get_id(reciver_name)
-    if id != reciver_id :
-        User.objects.filter(username = reciver_name).update(id = id)
-        telegrambot.send_message(f"Dear {reciver_name},Your telegram id is recorded,you will recive messages of Your reminder here.\nTeam Timetable",id)
-        telegrambot.send_message(f"Dear {reciver_name},we would like to remind you your reminder of {reciver_event}.\nThank You.\nTeam Timetable",id)
+
+def send_reminder_mail(num, reciver_name, reciver_event, reciver_id, num_message):
+    if reciver_id == "0000000" :
+        print("I am Here")
+        def handle_messages(msg):
+            text_recived = msg["text"]
+            chat_id = msg['chat']['id']
+            print("Recived : ", chat_id)
+
+            if text_recived == reciver_name :
+                TeleId.objects.filter(username=reciver_name).update(teleid=chat_id)
+                print("Updated")
+                message_text = f"Dear {reciver_name}, Your telegram id is recorded, you will start reciving 'Your reminder here'.\nTeam Timetable"
+                bot.sendMessage(chat_id, message_text)
+            else :
+                bot.sendMessage(chat_id,"Invalid Username,try again")
+                bot.message_loop(handle_messages)
+                time.sleep(300)
+
+    else :
+        time.sleep(num)
+        message_text = f"""Subject: Gentle Reminder: Upcoming Event for {reciver_name}\n\nDear {reciver_name},\nWe sincerely hope this message finds you in good health and high spirits. We write to kindly remind you of the forthcoming event,"{reciver_event}", scheduled as per your timetable.\n\nTeam Timetable"""
+        bot.sendMessage(reciver_id, message_text)
         return None
-    time.sleep(num)
-    send_mail(
-        "Event-Reminder",
-        f"Dear {reciver_name},we would like to remind you your reminder of {reciver_event}. \nThank You \nTeam Timetable",
-        "jha.dhiraj22803@gmail.com",
-        [f"{reciver_email}"],
-        fail_silently = False
-    
-    )
-    telegrambot.send_message(f"Dear {reciver_name},we like to remind you your reminder of {reciver_event}. \nThank You \nTeam Timetable",
-    reciver_id)
-    return None
 
 
-    
+def schedule(num, reciver_name, reciver_event, reciver_id, num_message):
+    threading.Thread(target=send_reminder_mail, args=(
+        num, reciver_name, reciver_event, reciver_id, num_message)).start()

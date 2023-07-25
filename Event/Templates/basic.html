@@ -11,13 +11,185 @@
     integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
   <title>{% block title %}{% endblock %}</title>
+  <style>
+    body {
+      background-color: lemonchiffon;
+      font-family: 'Times New Roman', Times, serif;
+    }
+
+    /* Navigation Bar Styles */
+    .navbar {
+      background-color: lemonchiffon;
+    }
+
+    .navbar-brand {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #333;
+    }
+
+    .navbar-toggler {
+      background-color: lightblue;
+    }
+
+    .nav-link {
+      color: #333;
+    }
+
+    .nav-link:hover {
+      color: #007bff;
+    }
+
+    /* Container Styles */
+
+    /* Form Styles */
+    .form-control {
+      border-color: #007bff;
+      border-radius: 5px;
+    }
+
+    .form-control:focus {
+      box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+    }
+
+    /* Button Styles */
+    .btn-outline-primary,
+    .btn-outline-secondary {
+      width: 175px;
+      border-radius: 20%;
+    }
+
+    /* Footer Styles */
+    .site-footer {
+      background-color: #26272b;
+      padding: 45px 0 20px;
+      font-size: 15px;
+      line-height: 24px;
+      color: #737373;
+    }
+
+    .site-footer hr {
+      border-top-color: #bbb;
+      opacity: 0.5;
+    }
+
+    .site-footer hr.small {
+      margin: 20px 0;
+    }
+
+    .site-footer h6 {
+      color: #fff;
+      font-size: 16px;
+      text-transform: uppercase;
+      margin-top: 5px;
+      letter-spacing: 2px;
+    }
+
+    .site-footer a {
+      color: #bc5050;
+    }
+
+    .site-footer a:hover {
+      color: #3366cc;
+      text-decoration: none;
+    }
+
+    .footer-links {
+      padding-left: 0;
+      list-style: none;
+    }
+
+    .footer-links li {
+      display: block;
+    }
+
+    .footer-links a {
+      color: #737373;
+    }
+
+    .footer-links a:active,
+    .footer-links a:focus,
+    .footer-links a:hover {
+      color: #3366cc;
+      text-decoration: none;
+    }
+
+    .footer-links.inline li {
+      display: inline-block;
+    }
+
+    .site-footer .social-icons {
+      text-align: right;
+    }
+
+    .site-footer .social-icons a {
+      width: 40px;
+      height: 40px;
+      line-height: 40px;
+      margin-left: 6px;
+      margin-right: 0;
+      border-radius: 100%;
+      background-color: #33353d;
+    }
+
+    /* Add your custom color classes here */
+    .bg-custom-primary {
+      background-color: #3d9bff;
+    }
+
+    .text-custom-white {
+      color: #fff;
+    }
+
+    .btn-custom-primary {
+      background-color: #007bff;
+      border-color: #007bff;
+    }
+
+    .btn-custom-primary:hover {
+      background-color: #0056b3;
+      border-color: #0056b3;
+    }
+
+    .container {
+      background-color: navajowhite;
+      border-radius: 20px;
+      padding: 20px;
+    }
+
+    /* Card Styles */
+    .card {
+      background-color: mediumaquamarine;
+      border: none;
+      border-radius: 20px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .card-title {
+      text-align: center;
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 1.8rem;
+      font-weight: bold;
+      margin-top: 2rem;
+    }
+
+    /* Add more custom styles as per your requirements */
+  </style>
+
 </head>
-<body style="background-color:lemonchiffon;">
-  <nav class="navbar navbar-expand-lg navbar-light " style="background-color:lemonchiffon;"> 
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light ">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">TimeTable</a>
-      <button class="navbar-toggler" style="background-color:lightblue;" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <a class="navbar-brand" href="/">TimeTable</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+        aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -69,16 +241,16 @@
 
   {% for message in messages %}
   <div class="alert alert-{{ message.tags}} alert-dismissible fade show" role="alert">
-    <strong>Message:</strong>{{ message }}
+    <strong style="font-size: 1.2rem;">Message : </strong> {{ message }}
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
   </div>
   {% endfor %}
 
   <!--  Signin Modal -->
   <div class="modal fade" id="Signup" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    aria-labelledby="staticBackdropLabel" aria-hidden="true" >
     <div class="modal-dialog">
-      <div class="modal-content">
+      <div class="modal-content" style="background: linear-gradient(to right, #00ffcc, #afb48f);">
         <div class="modal-header">
           <h5 class="modal-title" id="staticBackdropLabel">Signin</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -86,30 +258,30 @@
         <div class="modal-body">
           <form action="signin" method="POST">
             <div class="form-floating mb-3">
-              <input type="text" class="form-control" id="fname" name="fname" placeholder="Name" required>
+              <input style="border-radius: 20px;" type="text" class="form-control" id="fname" name="fname" placeholder="Name" required>
               <label for="floatingInput">First Name</label>
             </div>
             <div class="form-floating mb-3">
-              <input type="text" class="form-control" id="lname" name="lname" placeholder="Name" required>
+              <input style="border-radius: 20px;" type="text" class="form-control" id="lname" name="lname" placeholder="Name" required>
               <label for="floatingInput">Last Name</label>
             </div>
             <div class="form-floating mb-3">
-              <input type="text" class="form-control" id="username" name="username" placeholder="Username" required>
+              <input style="border-radius: 20px;" type="text" class="form-control" id="username" name="username" placeholder="Username" required>
               <label for="floatingInput">Username</label>
             </div>
             <div class="form-floating mb-3">
-              <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com required">
+              <input style="border-radius: 20px;" type="email" class="form-control" id="email" name="email" placeholder="name@example.com required">
               <label for="floatingInput">Email address</label>
             </div>
             <div class="form-floating mb-3">
-              <input type="password" class="form-control" id="password1" name="password1" placeholder="Password"
+              <input style="border-radius: 20px;" type="password" class="form-control" id="password1" name="password1" placeholder="Password"
                 required>
-              <label for="floatingPassword">Password</label>
+              <label style="border-radius: 20px;" for="floatingPassword">Password</label>
             </div>
             <div class="form-floating mb-3">
-              <input type="password" class="form-control" id="password2" name="password2" placeholder="Password"
+              <input style="border-radius: 20px;" type="password" class="form-control" id="password2" name="password2" placeholder="Password"
                 required>
-              <label for="floatingPassword">Confirm Password</label>
+              <label style="border-radius: 20px;" for="floatingPassword">Confirm Password</label>
             </div>
             {% csrf_token %}
             <button type="submit" class="btn btn-outline-primary">Signup</button>
@@ -127,7 +299,7 @@
   <div class="modal fade" id="Login" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
     aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
-      <div class="modal-content">
+      <div class="modal-content" style="background: linear-gradient(to right, #00ffcc, #afb48f);">
         <div class="modal-header">
           <h5 class="modal-title" id="staticBackdropLabel">Login</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -135,12 +307,12 @@
         <div class="modal-body">
           <form action="login" method="POST">
             <div class="form-floating mb-3">
-              <input type="text" class="form-control" id="loginusername" name="loginusername" placeholder="Username"
+              <input style="border-radius: 20px;" type="text" class="form-control" id="loginusername" name="loginusername" placeholder="Username"
                 required>
               <label for="floatingInput">Username</label>
             </div>
             <div class="form-floating mb-3">
-              <input type="password" class="form-control" id="loginpassword" name="loginpassword" placeholder="Password"
+              <input style="border-radius: 20px;" type="password" class="form-control" id="loginpassword" name="loginpassword" placeholder="Password"
                 required>
               <label for="floatingPassword">Password</label>
             </div>
@@ -163,7 +335,7 @@
     crossorigin="anonymous"></script>
 
   {% block body %}
-  
+
   {% endblock %}
 
   <!-- Footer -->
@@ -202,7 +374,6 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
         <div class="col-md-4 col-sm-6 col-xs-12">
           <ul class="social-icons">
-            <li><a href=""><i class="fab fa-facebook-f"></i></a></li>
             <li><a href=""><i class="fab fa-instagram"></i></a></li>
             <li><a href=""><i class="fab fa-twitter"></i></a></li>
             <li> <a href=""><i class="fab fa-github"></i></a></li>
@@ -215,7 +386,7 @@
 
   <style>
     .site-footer {
-      background-color: #26272b;
+      background-color: lemonchiffon;
       padding: 45px 0 20px;
       font-size: 15px;
       line-height: 24px;
@@ -232,7 +403,7 @@
     }
 
     .site-footer h6 {
-      color: #fff;
+      color: #045898;
       font-size: 16px;
       text-transform: uppercase;
       margin-top: 5px;

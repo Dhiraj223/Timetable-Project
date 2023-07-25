@@ -11,13 +11,189 @@
     integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
   <title>Timetables</title>
+  <style>
+    body {
+      background-color: lemonchiffon;
+      font-family: 'Times New Roman', Times, serif;
+    }
+
+    /* Navigation Bar Styles */
+    .navbar {
+      background-color: lemonchiffon;
+    }
+
+    .navbar-brand {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #333;
+    }
+
+    .navbar-toggler {
+      background-color: lightblue;
+    }
+
+    .nav-link {
+      color: #333;
+    }
+
+    .nav-link:hover {
+      color: #007bff;
+    }
+
+    /* Container Styles */
+    .container {
+      background-color: mediumaquamarine;
+      border-radius: 10px;
+      padding: 20px;
+    }
+
+    /* Form Styles */
+    .form-control {
+      border-color: #007bff;
+      border-radius: 5px;
+    }
+
+    .form-control:focus {
+      box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+    }
+
+    /* Button Styles */
+    .btn-outline-primary,
+    .btn-outline-secondary,
+    .btn-outline-danger {
+      width: 100px;
+      border-radius: 20%;
+    }
+
+    /* Footer Styles */
+    .site-footer {
+      background-color: #26272b;
+      padding: 45px 0 20px;
+      font-size: 15px;
+      line-height: 24px;
+      color: #737373;
+    }
+
+    .site-footer hr {
+      border-top-color: #bbb;
+      opacity: 0.5;
+    }
+
+    .site-footer hr.small {
+      margin: 20px 0;
+    }
+
+    .site-footer h6 {
+      color: #fff;
+      font-size: 16px;
+      text-transform: uppercase;
+      margin-top: 5px;
+      letter-spacing: 2px;
+    }
+
+    .site-footer a {
+      color: #737373;
+    }
+
+    .site-footer a:hover {
+      color: #3366cc;
+      text-decoration: none;
+    }
+
+    .footer-links {
+      padding-left: 0;
+      list-style: none;
+    }
+
+    .footer-links li {
+      display: block;
+    }
+
+    .footer-links a {
+      color: #737373;
+    }
+
+    .footer-links a:active,
+    .footer-links a:focus,
+    .footer-links a:hover {
+      color: #3366cc;
+      text-decoration: none;
+    }
+
+    .footer-links.inline li {
+      display: inline-block;
+    }
+
+    .site-footer .social-icons {
+      text-align: right;
+    }
+
+    .site-footer .social-icons a {
+      width: 40px;
+      height: 40px;
+      line-height: 40px;
+      margin-left: 6px;
+      margin-right: 0;
+      border-radius: 100%;
+      background-color: #33353d;
+    }
+
+    /* Add your custom color classes here */
+    .bg-custom-primary {
+      background-color: #3d9bff;
+    }
+
+    .text-custom-white {
+      color: #fff;
+    }
+
+    .btn-custom-primary {
+      background-color: #007bff;
+      border-color: #007bff;
+    }
+
+    .btn-custom-primary:hover {
+      background-color: #0056b3;
+      border-color: #0056b3;
+    }
+
+    .container {
+      background-color: navajowhite;
+      border-radius: 20px;
+      padding: 20px;
+    }
+
+    /* Card Styles */
+    .card {
+      background-color: mediumaquamarine;
+      border: none;
+      border-radius: 20px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .card-title {
+      text-align: center;
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 1.8rem;
+      font-weight: bold;
+      margin-top: 2rem;
+    }
+
+    /* Add more custom styles as per your requirements */
+  </style>
+
 </head>
 
-<body style="background-color: lemonchiffon;">
-  <nav  class="navbar navbar-expand-lg navbar-light " style="background-color:lemonchiffon;">
+<body >
+  <nav  class="navbar navbar-expand-lg navbar-light ">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">TimeTable</a>
-      <button class="navbar-toggler" style="background-color: lightblue;" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      <a class="navbar-brand" href="/">TimeTable</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -78,7 +254,7 @@
   <div class="modal fade" id="Signup" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
     aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
-      <div class="modal-content">
+      <div class="modal-content" style="background: linear-gradient(to right, #00ffcc, #afb48f);">
         <div class="modal-header">
           <h5 class="modal-title" id="staticBackdropLabel">Signin</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -86,30 +262,30 @@
         <div class="modal-body">
           <form action="signin" method="POST">
             <div class="form-floating mb-3">
-              <input type="text" class="form-control" id="fname" name="fname" placeholder="Name" required>
-              <label for="floatingInput">First Name</label>
+              <input style="border-radius: 20px;" type="text" class="form-control" id="fname" name="fname" placeholder="Name" required>
+              <label style="border-radius: 20px;" for="floatingInput">First Name</label>
             </div>
             <div class="form-floating mb-3">
-              <input type="text" class="form-control" id="lname" name="lname" placeholder="Name" required>
-              <label for="floatingInput">Last Name</label>
+              <input style="border-radius: 20px;" type="text" class="form-control" id="lname" name="lname" placeholder="Name" required>
+              <label style="border-radius: 20px;" for="floatingInput">Last Name</label>
             </div>
             <div class="form-floating mb-3">
-              <input type="text" class="form-control" id="username" name="username" placeholder="Username" required>
-              <label for="floatingInput">Username</label>
+              <input style="border-radius: 20px;" type="text" class="form-control" id="username" name="username" placeholder="Username" required>
+              <label style="border-radius: 20px;" for="floatingInput">Username</label>
             </div>
             <div class="form-floating mb-3">
-              <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com required">
-              <label for="floatingInput">Email address</label>
+              <input style="border-radius: 20px;" type="email" class="form-control" id="email" name="email" placeholder="name@example.com required">
+              <label style="border-radius: 20px;" for="floatingInput">Email address</label>
             </div>
             <div class="form-floating mb-3">
-              <input type="password" class="form-control" id="password1" name="password1" placeholder="Password"
+              <input style="border-radius: 20px;" type="password" class="form-control" id="password1" name="password1" placeholder="Password"
                 required>
-              <label for="floatingPassword">Password</label>
+              <label style="border-radius: 20px;" for="floatingPassword">Password</label>
             </div>
             <div class="form-floating mb-3">
-              <input type="password" class="form-control" id="password2" name="password2" placeholder="Password"
+              <input style="border-radius: 20px;" type="password" class="form-control" id="password2" name="password2" placeholder="Password"
                 required>
-              <label for="floatingPassword">Confirm Password</label>
+              <label style="border-radius: 20px;" for="floatingPassword">Confirm Password</label>
             </div>
             {% csrf_token %}
             <button type="submit" class="btn btn-outline-primary">Signup</button>
@@ -127,7 +303,7 @@
   <div class="modal fade" id="Login" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
     aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
-      <div class="modal-content">
+      <div class="modal-content" style="background: linear-gradient(to right, #00ffcc, #afb48f);">
         <div class="modal-header">
           <h5 class="modal-title" id="staticBackdropLabel">Login</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -135,14 +311,14 @@
         <div class="modal-body">
           <form action="login" method="POST">
             <div class="form-floating mb-3">
-              <input type="text" class="form-control" id="loginusername" name="loginusername" placeholder="Username"
+              <input style="border-radius: 20px;" type="text" class="form-control" id="loginusername" name="loginusername" placeholder="Username"
                 required>
-              <label for="floatingInput">Username</label>
+              <label style="border-radius: 20px;" for="floatingInput">Username</label>
             </div>
             <div class="form-floating mb-3">
-              <input type="password" class="form-control" id="loginpassword" name="loginpassword" placeholder="Password"
+              <input style="border-radius: 20px;" type="password" class="form-control" id="loginpassword" name="loginpassword" placeholder="Password"
                 required>
-              <label for="floatingPassword">Password</label>
+              <label style="border-radius: 20px;" for="floatingPassword">Password</label>
             </div>
             {% csrf_token %}
             <button type="submit" class="btn btn-outline-primary">Login</button>
@@ -160,16 +336,16 @@
     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
     crossorigin="anonymous"></script>
   {% if user.is_authenticated %}
-  <div class="container my-4 " style="background-color: navajowhite;">
+  <div class="container my-3 " >
 
-    <div class="card w-100 my-3 mx-auto" style="background-color:mediumaquamarine;" >
-      <h3 class="card-title my-2" style="text-align: center;font-family: 'Times New Roman', Times, serif;">Check your Timetable</h3>
+    <div class="card w-100 my-4 mx-auto" >
+      <h3 class="card-title my-2" >Check your Timetable</h3>
       <div class="card-body">
         
         <ol>
           {% for time,topic in timetable %}
 
-          <li class="my-2" style="font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;font-size: larger;">{{time}} - {{topic}}</li>
+          <li class="my-2" style="font-size: 1.3rem;">{{time}} - {{topic}}</li>
     
 
           {% endfor %}

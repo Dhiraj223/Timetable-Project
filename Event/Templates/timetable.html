@@ -9,15 +9,181 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <style>
+        body {
+            background-color: lemonchiffon;
+            font-family: 'Times New Roman', Times, serif;
+        }
 
+        /* Navigation Bar Styles */
+        .navbar {
+            background-color: lemonchiffon;
+        }
+
+        .navbar-brand {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .navbar-toggler {
+            background-color: lightblue;
+        }
+
+        .nav-link {
+            color: #333;
+        }
+
+        .nav-link:hover {
+            color: #007bff;
+        }
+
+        /* Form Styles */
+        .form-control {
+            border-color: #007bff;
+            border-radius: 5px;
+        }
+
+        .form-control:focus {
+            box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+        }
+
+        /* Button Styles */
+        .btn-outline-primary,
+        .btn-outline-secondary {
+            width: 175px;
+            border-radius: 20%;
+        }
+
+        /* Footer Styles */
+        .site-footer {
+            background-color: #26272b;
+            padding: 45px 0 20px;
+            font-size: 15px;
+            line-height: 24px;
+            color: #737373;
+        }
+
+        .site-footer hr {
+            border-top-color: #bbb;
+            opacity: 0.5;
+        }
+
+        .site-footer hr.small {
+            margin: 20px 0;
+        }
+
+        .site-footer h6 {
+            color: #fff;
+            font-size: 16px;
+            text-transform: uppercase;
+            margin-top: 5px;
+            letter-spacing: 2px;
+        }
+
+        .site-footer a {
+            color: #737373;
+        }
+
+        .site-footer a:hover {
+            color: #3366cc;
+            text-decoration: none;
+        }
+
+        .footer-links {
+            padding-left: 0;
+            list-style: none;
+        }
+
+        .footer-links li {
+            display: block;
+        }
+
+        .footer-links a {
+            color: #737373;
+        }
+
+        .footer-links a:active,
+        .footer-links a:focus,
+        .footer-links a:hover {
+            color: #3366cc;
+            text-decoration: none;
+        }
+
+        .footer-links.inline li {
+            display: inline-block;
+        }
+
+        .site-footer .social-icons {
+            text-align: right;
+        }
+
+        .site-footer .social-icons a {
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            margin-left: 6px;
+            margin-right: 0;
+            border-radius: 100%;
+            background-color: #33353d;
+        }
+
+        /* Add your custom color classes here */
+        .bg-custom-primary {
+            background-color: #3d9bff;
+        }
+
+        .text-custom-white {
+            color: #fff;
+        }
+
+        .btn-custom-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+
+        .btn-custom-primary:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+
+        .container {
+            background-color: navajowhite;
+            border-radius: 20px;
+            padding: 20px;
+        }
+
+        /* Card Styles */
+        .card {
+            background-color: mediumaquamarine;
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card-title {
+            text-align: center;
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin-top: 2rem;
+        }
+
+        /* Add more custom styles as per your requirements */
+    </style>
     <title>Timetable</title>
 </head>
 
-<body style="background-color: lemonchiffon;">
-    <nav  class="navbar navbar-expand-lg navbar-light " style="background-color:lemonchiffon;">
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light ">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">TimeTable</a>
-            <button class="navbar-toggler" style="background-color: lightblue;" type="button" data-bs-toggle="collapse"
+            <a class="navbar-brand" href="/">TimeTable</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -47,10 +213,12 @@
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <li><a class="dropdown-item" href="reminders"> Check Your Reminders</a></li>
-                                    <li><li><a  class="dropdown-item" href="timetables">Check Your Timetable</a></li></li>
-                                    <li><a class="dropdown-item" href="logout">Logout</a></li>
-                                </ul>
+                                    <li>
+                                    <li><a class="dropdown-item" href="timetables">Check Your Timetable</a></li>
                             </li>
+                            <li><a class="dropdown-item" href="logout">Logout</a></li>
+                        </ul>
+                    </li>
                     </li>
                 </ul>
                 <li>
@@ -80,7 +248,7 @@
     <div class="modal fade" id="Signup" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
-            <div class="modal-content">
+            <div class="modal-content" style="background: linear-gradient(to right, #00ffcc, #afb48f);">
                 <div class="modal-header">
                     <h5 class="modal-title" id="staticBackdropLabel">Signin</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -88,32 +256,32 @@
                 <div class="modal-body">
                     <form action="signin" method="POST">
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" id="fname" name="fname" placeholder="Name" required>
-                            <label for="floatingInput">First Name</label>
+                            <input style="border-radius: 20px;" type="text" class="form-control" id="fname" name="fname" placeholder="Name" required>
+                            <label style="border-radius: 20px;" for="floatingInput">First Name</label>
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" id="lname" name="lname" placeholder="Name" required>
-                            <label for="floatingInput">Last Name</label>
+                            <input style="border-radius: 20px;" type="text" class="form-control" id="lname" name="lname" placeholder="Name" required>
+                            <label style="border-radius: 20px;" for="floatingInput">Last Name</label>
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" id="username" name="username" placeholder="Username"
+                            <input style="border-radius: 20px;" type="text" class="form-control" id="username" name="username" placeholder="Username"
                                 required>
-                            <label for="floatingInput">Username</label>
+                            <label style="border-radius: 20px;" for="floatingInput">Username</label>
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="email" class="form-control" id="email" name="email"
+                            <input style="border-radius: 20px;" type="email" class="form-control" id="email" name="email"
                                 placeholder="name@example.com required">
-                            <label for="floatingInput">Email address</label>
+                            <label style="border-radius: 20px;" for="floatingInput">Email address</label>
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="password" class="form-control" id="password1" name="password1"
+                            <input style="border-radius: 20px;" type="password" class="form-control" id="password1" name="password1"
                                 placeholder="Password" required>
-                            <label for="floatingPassword">Password</label>
+                            <label style="border-radius: 20px;" for="floatingPassword">Password</label>
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="password" class="form-control" id="password2" name="password2"
+                            <input style="border-radius: 20px;" type="password" class="form-control" id="password2" name="password2"
                                 placeholder="Password" required>
-                            <label for="floatingPassword">Confirm Password</label>
+                            <label style="border-radius: 20px;" for="floatingPassword">Confirm Password</label>
                         </div>
                         {% csrf_token %}
                         <button type="submit" class="btn btn-outline-primary">Signup</button>
@@ -130,8 +298,8 @@
     <!--  Login Modal -->
     <div class="modal fade" id="Login" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
+        <div class="modal-dialog" >
+            <div class="modal-content" style="background: linear-gradient(to right, #00ffcc, #afb48f);">
                 <div class="modal-header">
                     <h5 class="modal-title" id="staticBackdropLabel">Login</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -139,14 +307,14 @@
                 <div class="modal-body">
                     <form action="login" method="POST">
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" id="loginusername" name="loginusername"
+                            <input style="border-radius: 20px;" type="text" class="form-control" id="loginusername" name="loginusername"
                                 placeholder="Username" required>
-                            <label for="floatingInput">Username</label>
+                            <label style="border-radius: 20px;" for="floatingInput">Username</label>
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="password" class="form-control" id="loginpassword" name="loginpassword"
+                            <input style="border-radius: 20px;" type="password" class="form-control" id="loginpassword" name="loginpassword"
                                 placeholder="Password" required>
-                            <label for="floatingPassword">Password</label>
+                            <label style="border-radius: 20px;" for="floatingPassword">Password</label>
                         </div>
                         {% csrf_token %}
                         <button type="submit" class="btn btn-outline-primary">Login</button>
@@ -160,12 +328,17 @@
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-        crossorigin="anonymous"></script>
     {% if user.is_authenticated %}
-    <div class="container" style="background-color:navajowhite;">
-        <div class="card w-100 my-3 mx-auto" style="background-color: rgb(150, 233, 233);">
+     {% if tt|length >= 1 %}
+     <div class="container my-4 " style="background-color: mediumaquamarine;">
+        <h3 style="text-align: center;">You Already have a Timetable Created! Delete it to create a New one.</h3>
+        <a href="timetables">
+            <button class="btn btn-outline-primary">Check Your Timetable</button>
+          </a>
+    </div>
+    {% else %}
+    <div class="container my-3">
+        <div class="card w-100 my-5 mx-auto ">
             <h3 class="card-title my-2" style="text-align: center;font-family: 'Times New Roman', Times, serif;">Create
                 Your Timetable</h3>
             <form method="POST" action="/timetable">
@@ -173,41 +346,150 @@
                     <div class="row mx-2">
                         <div class="col-md my-2 mb-2">
                             <div class="form-floating">
-                                <input type="time" name="time" id="time" class="form-control"
+                                <input style="border-radius: 20px;" type="time" name="time" id="time" class="form-control"
                                     placeholder="name@example.com" required>
-                                <label style="font-family: 'Times New Roman', Times, serif;" for="floatingInputGrid">
+                                <label style="border-radius: 20px;" style="font-family: 'Times New Roman', Times, serif;" for="floatingInputGrid">
                                     <h5>Time</h5>
                                 </label>
                             </div>
                         </div>
-                        
                         <div class="col-md my-2 mb-2">
                             <div class="form-floating">
-                                <input type="text" name="topic" id="topic_0" class="form-control"
+                                <input style="border-radius: 20px;" type="text" name="topic" id="topic_0" class="form-control"
                                     placeholder="name@example.com" required>
-                                <label style="font-family: 'Times New Roman', Times, serif;" for="floatingInputGrid">
+                                <label style="border-radius: 20px;" style="font-family: 'Times New Roman', Times, serif;" for="floatingInputGrid">
                                     <h5>Topic</h5>
                                 </label>
                             </div>
                         </div>
-                        <input type="hidden" id="hidden" name="hidden" value="0" >
+                        <input style="border-radius: 20px;" type="hidden" id="hidden" name="hidden" value="0">
                     </div>
-
+                    <div class="row mx-2">
+                        <div class="col-md my-2 mb-2">
+                            <div class="form-floating">
+                                <input style="border-radius: 20px;" type="time" name="time1" id="time" class="form-control"
+                                    placeholder="name@example.com" required>
+                                <label style="border-radius: 20px;" style="font-family: 'Times New Roman', Times, serif;" for="floatingInputGrid">
+                                    <h5>Time</h5>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md my-2 mb-2">
+                            <div class="form-floating">
+                                <input style="border-radius: 20px;" type="text" name="topic1" id="name_1" class="form-control"
+                                    placeholder="name@example.com" required>
+                                <label style="border-radius: 20px;" style="font-family: 'Times New Roman', Times, serif;" for="floatingInputGrid">
+                                    <h5>Topic</h5>
+                                </label>
+                            </div>
+                        </div>
+                        <input type="hidden" id="hidden" name="hidden" value="1">
+                    </div>
+                    <div class="row mx-2">
+                        <div class="col-md my-2 mb-2">
+                            <div class="form-floating">
+                                <input style="border-radius: 20px;" type="time" name="time2" id="time" class="form-control"
+                                    placeholder="name@example.com" required>
+                                <label style="border-radius: 20px;" style="font-family: 'Times New Roman', Times, serif;" for="floatingInputGrid">
+                                    <h5>Time</h5>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md my-2 mb-2">
+                            <div class="form-floating">
+                                <input style="border-radius: 20px;" type="text" name="topic2" id="name_2" class="form-control"
+                                    placeholder="name@example.com" required>
+                                <label style="border-radius: 20px;" style="font-family: 'Times New Roman', Times, serif;" for="floatingInputGrid">
+                                    <h5>Topic</h5>
+                                </label>
+                            </div>
+                        </div>
+                        <input type="hidden" id="hidden" name="hidden" value="2">
+                    </div>
+                    <div class="row mx-2">
+                        <div class="col-md my-2 mb-2">
+                            <div class="form-floating">
+                                <input style="border-radius: 20px;" type="time" name="time3" id="time" class="form-control"
+                                    placeholder="name@example.com" required>
+                                <label style="border-radius: 20px;" style="font-family: 'Times New Roman', Times, serif;" for="floatingInputGrid">
+                                    <h5>Time</h5>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md my-2 mb-2">
+                            <div class="form-floating">
+                                <input style="border-radius: 20px;" type="text" name="topic3" id="name_3" class="form-control"
+                                    placeholder="name@example.com" required>
+                                <label style="border-radius: 20px;" style="font-family: 'Times New Roman', Times, serif;" for="floatingInputGrid">
+                                    <h5>Topic</h5>
+                                </label>
+                            </div>
+                        </div>
+                        <input type="hidden" id="hidden" name="hidden" value="3">
+                    </div>
+                    <div class="row mx-2">
+                        <div class="col-md my-2 mb-2">
+                            <div class="form-floating">
+                                <input style="border-radius: 20px;" type="time" name="time4" id="time" class="form-control"
+                                    placeholder="name@example.com" required>
+                                <label style="border-radius: 20px;" style="font-family: 'Times New Roman', Times, serif;" for="floatingInputGrid">
+                                    <h5>Time</h5>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md my-2 mb-2">
+                            <div class="form-floating">
+                                <input style="border-radius: 20px;" type="text" name="topic4" id="name_4" class="form-control"
+                                    placeholder="name@example.com" required>
+                                <label style="border-radius: 20px;" style="font-family: 'Times New Roman', Times, serif;" for="floatingInputGrid">
+                                    <h5>Topic</h5>
+                                </label>
+                            </div>
+                        </div>
+                        <input type="hidden" id="hidden" name="hidden" value="4">
+                    </div>
+                    <div class="row mx-2">
+                        <div class="col-md my-2 mb-2">
+                            <div class="form-floating">
+                                <input style="border-radius: 20px;" type="time" name="time5" id="time" class="form-control"
+                                    placeholder="name@example.com" required>
+                                <label style="border-radius: 20px;" style="font-family: 'Times New Roman', Times, serif;" for="floatingInputGrid">
+                                    <h5>Time</h5>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md my-2 mb-2">
+                            <div class="form-floating">
+                                <input style="border-radius: 20px;" type="text" name="topic5" id="name_5" class="form-control"
+                                    placeholder="name@example.com" required>
+                                <label style="border-radius: 20px;" style="font-family: 'Times New Roman', Times, serif;" for="floatingInputGrid">
+                                    <h5>Topic</h5>
+                                </label>
+                            </div>
+                        </div>
+                        <input type="hidden" id="hidden" name="hidden" value="5">
+                    </div>
                 </div>
-                
-               
-                <button style="width: 100px;" type="submit" class="btn btn-outline-primary my-2 mx-1 ">Submit</button>
+                <div>
+                    <button style="width: 100px;" type="submit"
+                        class="btn btn-outline-primary my-2 mx-1 ">Submit</button>
+                    <button style="width: 100px;" type="button" id='but_add'
+                        class="btn btn-outline-secondary my-2 mx-1">ADD</button>
+                    <button style="width: 100px;" type="button" id='del_row'
+                        class="btn btn-outline-secondary my-2 mx-1">DeleteRow</button>
+                </div>
+
                 {% csrf_token %}
+
             </form>
-            <button style="width: 100px;" id='but_add' class="btn btn-outline-secondary my-2 mx-1">ADD</button>
-
-
 
 
         </div>
     </div>
+    {% endif %}
+
     {% else %}
-    <div class="container my-4">
+    <div class="container my-4 " style="background-color: mediumaquamarine;">
         <h3 style="text-align: center;">OOPS!!</h3>
         <h5>Please see the below Suggestions to excess this page:</h5>
         <ul>
@@ -218,7 +500,9 @@
     </div>
 
     {% endif %}
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script>
         $(document).ready(function () {
@@ -231,30 +515,39 @@
                 // New index
                 var index = Number(split_id[1]) + 1;
 
-               
+
                 // Create clone
                 var newel = $('.row:last').clone(true);
-                $(newel).find('input[type=text]:nth-child(1)').attr("id","name_"+index);
+                $(newel).find('input[type=text]:nth-child(1)').attr("id", "name_" + index);
                 $(newel).find('input[type=time]:nth-child(1)').attr("name", "time" + index);
                 $(newel).find('input[type=text]:nth-child(1)').attr("name", "topic" + index);
                 $(newel).find("input[id=hidden]").val(index)
-                
-                
-               
+
+
+
 
                 $(newel).find('input[type=time]:nth-child(1)').val("");
                 $(newel).find('input[type=text]:nth-child(1)').val("");
-                
-                
-                
-                
+
+
+
+
                 $(newel).insertAfter(".row:last");
             });
 
         });
-    </script>
 
+        $(document).ready(function () {
 
+            $('#del_row').click(function () {
+                // Ensure that there is at least one row before deleting
+                if ($('.row').length > 1) {
+                    // Remove the last row with class "row"
+                    $('.row:last').remove();
+                }
+            })
+        });
+    </script>  
 
 </body>
 
